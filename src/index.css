@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Riso 风格色板 ── */
+  --color-cream-50: #fffaf0;
+  --color-cream-100: #f4ead7;
+
+  --color-moss-50: #edf5e9;
+  --color-moss-100: #dcebd5;
+  --color-moss-200: #bdd3b2;
+  --color-moss-300: #9fbd91;
+  --color-moss-600: #637f57;
+  --color-moss-700: #536b49;
+  --color-moss-800: #3f5539;
+
+  --color-clay-50: #fbf1eb;
+  --color-clay-100: #ead5c7;
+  --color-clay-200: #d6b9a7;
+  --color-clay-700: #8b6451;
+  --color-clay-800: #694b3d;
+  --color-clay-900: #553d32;
+
+  --color-sky-50: #e8f4fd;
+  --color-sky-100: #d0e8f9;
+  --color-sky-200: #bad8dc;
+  --color-sky-800: #486e75;
+  --color-sky-900: #36545a;
+
+  /* ── Riso Accent 色板 ── */
+  --color-riso-green: #b5d99c;
+  --color-riso-green-dark: #8cb870;
+  --color-riso-yellow: #fde68a;
+  --color-riso-yellow-dark: #fbbf24;
+  --color-riso-purple: #c4b5fd;
+  --color-riso-purple-dark: #a78bfa;
+  --color-riso-pink: #fbcfe8;
+  --color-riso-pink-dark: #f9a8d4;
+  --color-riso-blue: #bae6fd;
+  --color-riso-blue-dark: #7dd3fc;
+
+  /* ── 背景色 ── */
+  --color-page-bg: #F7F1E1;
+
+  /* ── 阴影 ── */
+  --shadow-soft: 0 18px 55px rgba(86, 78, 64, 0.11);
+  --shadow-riso-purple: 5px 5px 0px rgba(167, 139, 250, 0.45);
+  --shadow-riso-green: -4px 4px 0px rgba(139, 184, 112, 0.45);
+  --shadow-riso-yellow: 4px -3px 0px rgba(251, 191, 36, 0.4);
+  --shadow-riso-pink: 3px 5px 0px rgba(249, 168, 212, 0.4);
+}
+
+:root {
+  font-family:
+    "Caveat", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Microsoft YaHei", sans-serif;
+  color: #332f2a;
+  background: var(--color-page-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-page-bg);
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+/* ── 有机形状 (Organic Squirkles) ── */
+.organic-shape {
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+.organic-shape-alt {
+  border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+}
+
+.organic-shape-soft {
+  border-radius: 42px 255px 30px 255px / 255px 30px 255px 42px;
+}
+
+/* ── 硬边缘阴影 (Riso-style) ── */
+.riso-shadow-purple {
+  box-shadow: var(--shadow-riso-purple);
+}
+
+.riso-shadow-green {
+  box-shadow: var(--shadow-riso-green);
+}
+
+.riso-shadow-yellow {
+  box-shadow: var(--shadow-riso-yellow);
+}
+
+.riso-shadow-pink {
+  box-shadow: var(--shadow-riso-pink);
+}
+
+/* ── 贴纸旋转效果 ── */
+.sticker-tilt-left {
+  transform: rotate(-1.2deg);
+}
+
+.sticker-tilt-right {
+  transform: rotate(0.8deg);
+}
+
+.sticker-tilt-slight {
+  transform: rotate(-0.4deg);
+}
+
+/* ── 植物图鉴排版 —— 左侧大留白 ── */
+.botanical-padding {
+  padding-left: 2.25rem;
+  padding-right: 1.25rem;
+}
+
+/* 卡片标题装饰线 —— 标题下方的手绘横线 */
+.title-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.title-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(167, 139, 250, 0.3) 0%,
+    rgba(167, 139, 250, 0.1) 60%,
+    transparent 100%
+  );
+  border-radius: 1px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   和纸胶带 (Washi Tape) —— 真实质感
+
+   更小、更窄、不规则透明度 + mix-blend-mode: multiply
+   ══════════════════════════════════════════════════════════ */
+
+.washi-tape {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+  width: 56px;
+  height: 12px;
+  border-radius: 1px;
+  pointer-events: none;
+  z-index: 20;
+  mix-blend-mode: multiply;
+  /* 不规则透明度的格子纹理 */
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.2) 3px,
+      rgba(255, 255, 255, 0.2) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.15) 3px,
+      rgba(255, 255, 255, 0.15) 4px
+    ),
+    linear-gradient(
+      135deg,
+      rgba(181, 217, 156, 0.5) 0%,
+      rgba(181, 217, 156, 0.3) 50%,
+      rgba(181, 217, 156, 0.45) 100%
+    );
+}
+
+.washi-tape-purple {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.2) 3px,
+      rgba(255, 255, 255, 0.2) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.15) 3px,
+      rgba(255, 255, 255, 0.15) 4px
+    ),
+    linear-gradient(
+      135deg,
+      rgba(196, 181, 253, 0.45) 0%,
+      rgba(196, 181, 253, 0.25) 50%,
+      rgba(196, 181, 253, 0.4) 100%
+    );
+  transform: translateX(-50%) rotate(1.2deg);
+}
+
+.washi-tape-yellow {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.2) 3px,
+      rgba(255, 255, 255, 0.2) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.15) 3px,
+      rgba(255, 255, 255, 0.15) 4px
+    ),
+    linear-gradient(
+      135deg,
+      rgba(253, 230, 138, 0.5) 0%,
+      rgba(253, 230, 138, 0.3) 50%,
+      rgba(253, 230, 138, 0.45) 100%
+    );
+  transform: translateX(-50%) rotate(-1.8deg);
+}
+
+/* ══════════════════════════════════════════════════════════
+   卡片间距系统 —— 让它们像在温室不同区域生长
+   ══════════════════════════════════════════════════════════ */
