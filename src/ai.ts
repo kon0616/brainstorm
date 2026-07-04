@@ -40,7 +40,7 @@ export const defaultAISettings: AISettings = {
   apiKey: '',
   baseUrl: 'https://api.deepseek.com',
   modelName: 'deepseek-chat',
-  useMock: true,
+  useMock: false,
 }
 
 export const providerDefaults: Record<Provider, Pick<AISettings, 'baseUrl' | 'modelName'>> = {
@@ -232,9 +232,9 @@ function completionUrl(baseUrl: string) {
 }
 
 export function hasUsableAISettings(settings: AISettings) {
+  // 只要 apiKey / baseUrl / modelName 填了就走真实 API，忽略 useMock 开关
   return Boolean(
-    !settings.useMock &&
-      settings.apiKey.trim() &&
+    settings.apiKey.trim() &&
       settings.baseUrl.trim() &&
       settings.modelName.trim(),
   )
@@ -258,6 +258,11 @@ export async function streamIdeaExpansion(
   settings: AISettings,
   onTextDelta: (text: string) => void,
 ) {
+  console.log('[AI] 当前模式:', settings.useMock ? 'Mock(已忽略)' : '真实API',
+    '| API Key 存在:', !!settings.apiKey,
+    '| Base URL:', settings.baseUrl,
+    '| Model:', settings.modelName)
+
   let response: Response
 
   try {
